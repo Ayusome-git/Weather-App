@@ -18,9 +18,9 @@ export function Login(){
         const users=JSON.parse(localStorage.getItem("users")||"{}");
         try{
             if(users[username] && users[username]===password){
-                alert("You are signed up!")
                 navigate("/weather")
                 sessionStorage.setItem("Username",username)
+                alert(`Welcome ${sessionStorage.getItem("Username")}`)
 
             }
             else{
