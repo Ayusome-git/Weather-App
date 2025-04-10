@@ -37,8 +37,8 @@ export function Login(){
     return <div className="h-screen w-screen flex text-center justify-center items-center bg-[url(./components/images/bgimg.jpg)]">
     <div className="rounded-2xl  min-w-56 p-8 bg-slate-700 opacity-80">
         <div className="pb-2 text-2xl text-white">Login</div>
-            <Input ref={usernameRef} placeholder="Username"/>
-            <Input ref={passwordRef} placeholder="Password"/>
+            <Input type={"text"} ref={usernameRef} placeholder="Username"/>
+            <Input type={"password"} ref={passwordRef} placeholder="Password"/>
             <span className="text-sm text-white">Dont have an Account?</span>
             <span className="text-sm underline text-blue-400 cursor-pointer" onClick={()=>{
                 navigate("/signup")

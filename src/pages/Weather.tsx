@@ -22,11 +22,11 @@ export function Weather(){
     const[icon,setIcon]=useState("")
     const inputRef=useRef<any>("");
 
-    // useEffect(()=>{
-    //     return ()=>{
-    //         geoLoc()
-    //     }
-    // },[])
+    useEffect(()=>{
+        return ()=>{
+            geoLoc()
+        }
+    },[])
 
     async function BgImg(){
         const response =await axios.get(`https://api.unsplash.com/search/photos?query=${sessionStorage.getItem("City")}&client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}`)
@@ -50,23 +50,24 @@ export function Weather(){
             setTemp(response.data.main.temp);
             setCity(response.data.name)
             setHumidity(response.data.main.humidity)
-            sessionStorage.setItem("City",city)
+            // sessionStorage.setItem("City",city)
             
      }
 
     async function geoLoc(){
         navigator.geolocation.getCurrentPosition(async(pos)=>{
             const response= await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&appid=${import.meta.env.VITE_API_KEY}&units=metric`)
-                BgImg()
-                setType(response.data.weather[0].main)
-                SetIconcode(response.data.weather[0].icon)
-                // console.log("sdgfsd"+response.data.weather[0].icon)
-                setIcon(`https://openweathermap.org/img/wn/${iconCode}@2x.png`)
-                setWind(response.data.wind.speed);
-                setTemp(response.data.main.temp);
-                setCity(response.data.name)
-                setHumidity(response.data.main.humidity)
-                sessionStorage.setItem("City",city)
+            setType(response.data.weather[0].main)
+            const iconCode = response.data.weather[0].icon;
+            SetIconcode(iconCode);
+            setIcon(`https://openweathermap.org/img/wn/${iconCode}@2x.png`);
+            setWind(response.data.wind.speed);
+            setTemp(response.data.main.temp);
+            const c=response.data.name
+            setCity(c)
+            setHumidity(response.data.main.humidity)
+            sessionStorage.setItem("City",c)
+            BgImg()
         })
     }
     return(
@@ -95,7 +96,7 @@ export function Weather(){
                 </div>
                 <div className="text-center text-4xl pt-4">{city}</div>
                 <div className="flex items-center justify-center">
-                    <img className="opacity-90 size-40" src={icon} alt="" />
+                    <img className="size-40 " src={`https://openweathermap.org/img/wn/${iconCode}@2x.png`} alt="" />
                 </div>
                 <div className="text-center pb-3 text-4xl">{type}</div>
                 <div className="text-center text-3xl">{temp}{"° C"}</div>
