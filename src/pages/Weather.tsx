@@ -21,11 +21,9 @@ export function Weather(){
     const[iconCode,SetIconcode]=useState("");
     const inputRef=useRef<any>("");
 
-    useEffect(()=>{
-        return ()=>{
-            geoLoc()
-        }
-    },[])
+    useEffect(() => {
+        geoLoc();
+    }, []);
 
     async function BgImg(){
         const response =await axios.get(`https://api.unsplash.com/search/photos?query=${sessionStorage.getItem("City")}&client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}`)
