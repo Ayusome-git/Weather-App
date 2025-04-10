@@ -19,7 +19,6 @@ export function Weather(){
     const [city,setCity] = useState("");
     const [backgroundImage,setImage] = useState("");
     const[iconCode,SetIconcode]=useState("");
-    const[icon,setIcon]=useState("")
     const inputRef=useRef<any>("");
 
     useEffect(()=>{
@@ -44,13 +43,11 @@ export function Weather(){
             BgImg();
             setType(response.data.weather[0].main)
             SetIconcode(response.data.weather[0].icon)
-            
-            setIcon(`https://openweathermap.org/img/wn/${iconCode}@2x.png`)
             setWind(response.data.wind.speed);
             setTemp(response.data.main.temp);
             setCity(response.data.name)
             setHumidity(response.data.main.humidity)
-            // sessionStorage.setItem("City",city)
+
             
      }
 
@@ -60,7 +57,6 @@ export function Weather(){
             setType(response.data.weather[0].main)
             const iconCode = response.data.weather[0].icon;
             SetIconcode(iconCode);
-            setIcon(`https://openweathermap.org/img/wn/${iconCode}@2x.png`);
             setWind(response.data.wind.speed);
             setTemp(response.data.main.temp);
             const c=response.data.name
