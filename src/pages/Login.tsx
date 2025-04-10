@@ -34,7 +34,7 @@ export function Login(){
 
     }
 
-    return <div className="h-screen w-screen flex text-center justify-center items-center bg-[url(./components/images/bgimg.jpg)]">
+    return <div className="h-screen w-screen flex text-center justify-center items-center bg-[url(./components/images/bgimg.jpg)] bg-cover">
     <div className="rounded-2xl  min-w-56 p-8 bg-slate-700 opacity-80">
         <div className="pb-2 text-2xl text-white">Login</div>
             <Input type={"text"} ref={usernameRef} placeholder="Username"/>
