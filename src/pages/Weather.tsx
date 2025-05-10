@@ -73,7 +73,7 @@ export function Weather(){
             }}>
                 <div className="p-10 bg-slate-700 opacity-80 rounded-2xl items-center justify-center">
                 <div className="flex items-center justify center gap-3 pl-6">
-                <input ref={inputRef} className="rounded-2xl p-1 pl-2 outline-none w-72 text-gray-500" type="text" placeholder="Search"/>
+                <input ref={inputRef} onKeyDown={(e)=>{if(e.key === "Enter") setLocation();}} className="rounded-2xl p-1 pl-2 outline-none w-72 text-gray-500" type="text" placeholder="Search"/>
                 <div onClick={setLocation}><SearchIcon/></div>
                 <div onClick={speech}>
                     <SpeakerIcon/>
